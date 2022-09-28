@@ -11,7 +11,3 @@ spring:
       ddl-auto: update
 
     database: postgresql
-
-logging:
-  level:
-    ROOT: debug

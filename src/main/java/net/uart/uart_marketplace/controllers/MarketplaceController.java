@@ -5,6 +5,7 @@ import net.uart.uart_marketplace.exceptions.ConflictException;
 import net.uart.uart_marketplace.services.MarketplaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -36,24 +37,24 @@ public class MarketplaceController {
     }
 
     @PutMapping(value = "/item/{ID}", consumes = "application/json")
-    public HttpStatus updateItem(@PathVariable String ID, @RequestBody MarketItemDTO body) {
+    public ResponseEntity<String> updateItem(@PathVariable String ID, @RequestBody MarketItemDTO body) {
         service.updateItem(body);
-        return HttpStatus.OK;
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/item/{ID}")
-    public HttpStatus deleteItem(@PathVariable String ID) {
+    public ResponseEntity<String> deleteItem(@PathVariable String ID) {
         service.deleteItem(ID);
-        return HttpStatus.OK;
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping(value = "/item", consumes = "application/json")
-    public HttpStatus createItem(@RequestBody MarketItemDTO body) {
+    public ResponseEntity<String> createItem(@RequestBody MarketItemDTO body) {
         if (service.checkIfExists(body.getID())) {
             throw new ConflictException();
         }
         service.createItem(body);
-        return HttpStatus.CREATED;
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
