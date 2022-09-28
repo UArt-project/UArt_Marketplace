@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://18.194.89.19:5432/uart
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    driverClassName: org.postgresql.Driver
+  jpa:
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+    database: postgresql
+
+logging:
+  level:
+    ROOT: debug
