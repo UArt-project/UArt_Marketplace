@@ -3,7 +3,7 @@ docker-build:
 
 docker-run:
 	echo "Running on port 8080"
-	docker run --env-file $/env/uart_marketplace.env -p 8080:8080 --net uart_net --name uart-marketplace -d uartweb/marketplace
+	docker run --env-file /home/jenkins/env/uart_marketplace.env -p 8080:8080 --net uart_net --name uart-marketplace -d uartweb/marketplace
 docker-stop:
 	docker stop uart-marketplace
 
