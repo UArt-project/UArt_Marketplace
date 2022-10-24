@@ -14,6 +14,7 @@ public interface MarketItemRepository extends PagingAndSortingRepository<MarketI
 
     boolean existsByID(String ID);
 
+    @Transactional
     void deleteByID(String ID);
 
     @Modifying
