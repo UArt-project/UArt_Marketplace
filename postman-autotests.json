@@ -106,7 +106,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/marketplace/v1/item/Test 8",
+					"raw": "http://localhost:8080/marketplace/v1/item/Test11",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -116,7 +116,7 @@
 						"marketplace",
 						"v1",
 						"item",
-						"Test 8"
+						"Test11"
 					]
 				}
 			},
@@ -161,6 +161,49 @@
 						"v1",
 						"item",
 						"ABOBA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Conflict post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Conflict\",\n    \"photoLink\": \"https://picsum.photos/397\",\n    \"price\": 1,\n    \"id\": \"SHRK\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/marketplace/v1/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"marketplace",
+						"v1",
+						"item"
 					]
 				}
 			},
