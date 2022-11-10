@@ -10,6 +10,7 @@ import net.uart.uart_marketplace.repositpories.MarketItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class MarketplaceService {
     }
 
     public List<MarketItemDTO> getPage(int pageNumber, int limit) {
-        Pageable pageRequest = PageRequest.of(pageNumber, limit);
+        Pageable pageRequest = PageRequest.of(pageNumber, limit, Sort.by("dbId"));
         if (limit > 100) {
             throw new TooManyItemsOnPageException("You tried to ask for %s items on page, maximum is 100");
         }
